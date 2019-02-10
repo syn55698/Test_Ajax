@@ -1,0 +1,145 @@
+<html>
+    <head>
+
+                        <script type="text/javascript" src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>  
+					<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+					<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+
+
+         			<!-- 新 Bootstrap 核心 CSS 文件 -->
+                    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+                    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+                    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
+
+        			<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.9/semantic.min.css"/>
+                	<script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.9/semantic.min.js"></script>
+					
+					<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+            
+
+                <meta http-equiv="access-control-allow-origin" content="http://syn55698.unaux.com">
+        <script>
+            $(function(){
+                $("#go").click(function(){
+
+
+                    $.ajax({ 
+                        url: "ajax.php", 
+                        //context: document.body, 
+                        type:"GET",
+                        dataType:"text",
+                        success: function(data){
+                            alert("success\n\n"+JSON.stringify(data));
+                        },
+                        error:function(jQxhr){
+                            alert("fail\n\n"+JSON.stringify(jQxhr));
+                        }
+                    });
+                })
+
+
+                $("#go2").click(function(){
+
+
+                    $.ajax({ 
+                        url: "http://syn55698.unaux.com/ajax.php", 
+                        //context: document.body, 
+                        type:"GET",
+                        dataType:"text",
+                        success: function(data){
+                            alert("success\n\n"+JSON.stringify(data));
+                        },
+                        error:function(jQxhr){
+                            alert("fail\n\n"+JSON.stringify(jQxhr));
+                        }
+                    });
+                })
+
+
+                 $("#go3").click(function(){
+                        /*
+                        $.getJSON("ajax_json.php"
+                            ,function(json){ 
+                                alert("Sussess : \n\n"+JSON.stringify(json))
+                            }
+                        ); 
+                        */
+
+                        $.get('ajax_json.php?callback=?', {name: 'dscdes'}, function (json) { 
+                            
+                            for(var i in json) alert(i+":"+json[i]); 
+                            
+                        }, 'jsonp');  
+                 })
+
+                 // JSONP，跨域請求使用 jQuery AJax ，成功
+                 $("#go4").click(function(){
+                        /*
+                        $.getJSON("http://syn55698.unaux.com/ajax_json.php?jsoncallback=?"
+                            , { id: 0, action: 'jobcategoryjson' }
+                            ,function(json){ 
+                                alert("Sussess : \n\n"+JSON.stringify(json))
+                            }
+                        );
+                        */
+
+                         $.get('http://syn55698.unaux.com/ajax_json.php?callback=?', {name: 'dscdes'}, function (json) { for(var i in json) alert(i+":"+json[i]); }, 'jsonp');  
+                 })
+
+
+                 $("#go5").click(function(){
+                        
+
+                        $.ajax({
+    url: 'ajax_json.php?callback=?',
+    type: 'get',
+    dataType:'jsonp',
+    data: '{"system":{"ver":"1.0","sign":"5326bdd79317a8cd215b649e75e042b6","appid":"lace1fdddaa5de4393","time":"1491895621","nonce":"49735441495760803893403522385895","appSecret":"6d5c2c727dbb4ba78fac5a0e9ece82"},"params":{"phone":"17691260000"},"id":"80"}',
+    success:function(data){
+        alert("success : \n\n"+JSON.stringify(data))
+       console.log(data);
+     },error:function(jQxhr){
+         alert("fail : \n\n"+JSON.stringify(jQxhr))
+     }
+})
+                 })
+
+
+// JSONP，跨域請求使用 jQuery AJax ，成功
+$("#go6").click(function(){
+                        
+
+                        $.ajax({
+    url: 'http://syn55698.unaux.com/ajax_json.php?callback=?',
+    type: 'get',
+    dataType:'jsonp',
+    data: '{"system":{"ver":"1.0","sign":"5326bdd79317a8cd215b649e75e042b6","appid":"lace1fdddaa5de4393","time":"1491895621","nonce":"49735441495760803893403522385895","appSecret":"6d5c2c727dbb4ba78fac5a0e9ece82"},"params":{"phone":"17691260000"},"id":"80"}',
+    success:function(data){
+         alert("success : \n\n"+JSON.stringify(data))
+       console.log(data);
+     },error:function(jQxhr){
+         alert("fail : \n\n"+JSON.stringify(jQxhr))
+     }
+})
+
+                 })
+                
+                
+            })
+        </script>
+    </head>
+
+    <body>
+        <h1>Ajax.html Test Ajax</h1>
+        <button id="go" class="ui massive teal button" style="position: absolute;left:300px;top:300px;">GO</button>
+        <button id="go2" class="ui massive teal button" style="position: absolute;left:300px;top:400px;">GO2</button>
+        <button id="go3" class="ui massive teal button" style="position: absolute;left:300px;top:500px;">GO3</button>
+        <button id="go4" class="ui massive teal button" style="position: absolute;left:300px;top:600px;">GO4</button>
+    
+    
+        <button id="go5" class="ui massive teal button" style="position: absolute;left:500px;top:300px;">GO5</button>
+        <button id="go6" class="ui massive teal button" style="position: absolute;left:500px;top:400px;">GO6</button>
+     </body>
+    
+
+</html>
